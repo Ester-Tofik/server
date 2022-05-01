@@ -1,140 +1,131 @@
-var UserModel = require('../models/userModel.js');
+var UserModel = require('../models/UserModel.js');
 
-
-module.exports.getOneUser = async function (err, req, res, next){
-        try {
-            const email = req.params.email;
-            const password = req.params.password;
-            const user = await UserModel.findOne({email:email, password:password});
-            res.send(user);
-        }
-        catch(err) {
-            next(err);
-        }
-}
-
-
-
-
+/**
+ * UserController.js
+ *
+ * @description :: Server-side logic for managing Users.
+ */
 module.exports = {
 
     /**
-     * userController.list()
+     * UserController.list()
      */
     list: function (req, res) {
-        UserModel.find(function (err, users) {
+        UserModel.find(function (err, Users) {
             if (err) {
                 return res.status(500).json({
-                    message: 'Error when getting user.',
+                    message: 'Error when getting User.',
                     error: err
                 });
             }
 
-            return res.json(users);
+            return res.json(Users);
         });
     },
 
     /**
-     * userController.show()
+     * UserController.show()
      */
     show: function (req, res) {
         var id = req.params.id;
 
-        UserModel.findOne({_id: id}, function (err, user) {
+        UserModel.findOne({_id: id}, function (err, User) {
             if (err) {
                 return res.status(500).json({
-                    message: 'Error when getting user.',
+                    message: 'Error when getting User.',
                     error: err
                 });
             }
 
-            if (!user) {
+            if (!User) {
                 return res.status(404).json({
-                    message: 'No such user'
+                    message: 'No such User'
                 });
             }
 
-            return res.json(user);
+            return res.json(User);
         });
     },
 
     /**
-     * userController.create()
+     * UserController.create()
      */
     create: function (req, res) {
-        var user = new UserModel({
-			identityNumber : req.body.identityNumber,
-			email : req.body.email,
+        var User = new UserModel({
 			firstName : req.body.firstName,
 			lastName : req.body.lastName,
+			id : req.body.id,
+			email : req.body.email,
+			password : req.body.password,
 			phoneNumber : req.body.phoneNumber,
 			birthDate : req.body.birthDate,
-			password : req.body.password
+			medicines : req.body.medicines
         });
 
-        user.save(function (err, user) {
+        User.save(function (err, User) {
             if (err) {
                 return res.status(500).json({
-                    message: 'Error when creating user',
+                    message: 'Error when creating User',
                     error: err
                 });
             }
 
-            return res.status(201).json(user);
+            return res.status(201).json(User);
         });
     },
 
     /**
-     * userController.update()
+     * UserController.update()
      */
     update: function (req, res) {
         var id = req.params.id;
 
-        UserModel.findOne({_id: id}, function (err, user) {
+        UserModel.findOne({_id: id}, function (err, User) {
             if (err) {
                 return res.status(500).json({
-                    message: 'Error when getting user',
+                    message: 'Error when getting User',
                     error: err
                 });
             }
 
-            if (!user) {
+            if (!User) {
                 return res.status(404).json({
-                    message: 'No such user'
+                    message: 'No such User'
                 });
             }
 
-            user.identityNumber = req.body.identityNumber ? req.body.identityNumber : user.identityNumber;
-			user.email = req.body.email ? req.body.email : user.email;
-			user.firstName = req.body.firstName ? req.body.firstName : user.firstName;
-			user.lastName = req.body.lastName ? req.body.lastName : user.lastName;
-			user.phoneNumber = req.body.phoneNumber ? req.body.phoneNumber : user.phoneNumber;
-			user.birthDate = req.body.birthDate ? req.body.birthDate : user.birthDate;
-			user.password = req.body.password ? req.body.password : user.password;
+            User.firstName = req.body.firstName ? req.body.firstName : User.firstName;
+			User.lastName = req.body.lastName ? req.body.lastName : User.lastName;
+			User.id = req.body.id ? req.body.id : User.id;
+			User.email = req.body.email ? req.body.email : User.email;
+			User.password = req.body.password ? req.body.password : User.password;
+			User.phoneNumber = req.body.phoneNumber ? req.body.phoneNumber : User.phoneNumber;
+			User.birthDate = req.body.birthDate ? req.body.birthDate : User.birthDate;
+			User.medicines = req.body.medicines ? req.body.medicines : User.medicines;
 			
-            user.save(function (err, user) {
+            User.save(function (err, User) {
                 if (err) {
                     return res.status(500).json({
-                        message: 'Error when updating user.',
+                        message: 'Error when updating User.',
                         error: err
                     });
                 }
 
-                return res.json(user);
+                return res.json(User);
             });
         });
     },
 
     /**
-     * userController.remove()
+     * UserController.remove()
      */
     remove: function (req, res) {
         var id = req.params.id;
 
-        UserModel.findByIdAndRemove(id, function (err, user) {
+        UserModel.findByIdAndRemove(id, function (err, User) {
             if (err) {
                 return res.status(500).json({
-                    message: 'Error when deleting the user.',
+                    message: 'Error when deleting the User.',
                     error: err
                 });
             }
