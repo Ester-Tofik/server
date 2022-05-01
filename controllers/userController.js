@@ -6,7 +6,7 @@ var userModel = require('../models/UserModel.js');
            const id = req.params.id;
            const password = req.params.password;
            const user = await userModel.findOne({ id: id, password: password });
-            res.send(user)
+           res.send(user);
         } 
         catch (error) {
             next(error);
@@ -29,7 +29,7 @@ var userModel = require('../models/UserModel.js');
 
 module.exports.createNewUser = async function (req, res, next){
     try {
-        
+        console.log("wefdwsa")
             const user = req.body;
             const { firstName, lastName, id,email, password, phoneNumber, birthDate , medicines} = user;
             const newUser = new UserModel({
