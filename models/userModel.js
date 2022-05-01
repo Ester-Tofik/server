@@ -1,9 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-<<<<<<< HEAD
-var UserSchema = new Schema({
-=======
+
 const medicineSchema = new mongoose.Schema({
 	apiId: {
 		type: String,
@@ -35,11 +33,7 @@ const medicineSchema = new mongoose.Schema({
 	}
 })
 
-
->>>>>>> 65b115123ada8d25d95188fdabe6fea05f09acbc
-
-//	'medicines' : Array
-
+const userSchema = new Schema({
 	firstName : {
 		type:String,
 		minlength : 2
@@ -81,4 +75,4 @@ const medicineSchema = new mongoose.Schema({
 	 } ,
 	 medicines:[medicineSchema],	 
 });
-module.exports = mongoose.model('User', UserSchema);
+module.exports = mongoose.model('User', userSchema);
