@@ -27,30 +27,28 @@ var UserModel = require('../models/UserModel.js');
 //     },
 
 
-//     create: function (req, res) {
-//         var User = new UserModel({
-// 			firstName : req.body.firstName,
-// 			lastName : req.body.lastName,
-// 			id : req.body.id,
-// 			email : req.body.email,
-// 			password : req.body.password,
-// 			phoneNumber : req.body.phoneNumber,
-// 			birthDate : req.body.birthDate,
-// 			medicines : req.body.medicines
-//         });
-
-//         User.save(function (err, User) {
-//             if (err) {
-//                 return res.status(500).json({
-//                     message: 'Error when creating User',
-//                     error: err
-//                 });
-//             }
-
-//             return res.status(201).json(User);
-//         });
-//     },
-
+module.exports.createNewUser = async function (req, res, next){
+    try {
+        
+            const user = req.body;
+            const { firstName, lastName, id,email, password, phoneNumber, birthDate , medicines} = user;
+            const newUser = new UserModel({
+                firstName : firstName,
+                lastName : lastName,
+			    id : id,
+			    email : email,
+			    password :password,
+			    phoneNumber : phoneNumber,
+			    birthDate : birthDate,
+			    medicines : medicines
+            })
+            const inserted = await newUser.save();
+            res.send(inserted);
+        }
+        catch(err) {
+            next(err);
+        }
+}
 //     /**
 //      * UserController.update()
 //      */
