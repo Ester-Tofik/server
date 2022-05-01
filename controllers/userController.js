@@ -1,4 +1,4 @@
-var UserModel = require('../models/UserModel.js');
+var userModel = require('../models/UserModel.js');
 
 
     module.exports.show= async function (req, res,next) {
