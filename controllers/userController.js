@@ -6,7 +6,7 @@ var userModel = require('../models/UserModel.js');
            const id = req.params.id;
            const password = req.params.password;
            const user = await userModel.findOne({ id: id, password: password });
-            res.send(user)
+           res.send(user);
         } 
         catch (error) {
             next(error);
