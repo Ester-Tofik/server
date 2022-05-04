@@ -7,7 +7,6 @@ const port = 3000;
 
 app.use('/user', user);
 
-
 db.connect();
 app.listen(port, () => {
   console.log(`we love iceCream❤🤣😂 ${port}`);
