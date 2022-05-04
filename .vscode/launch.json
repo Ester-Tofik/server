@@ -4,6 +4,7 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
+    
         {
             "console": "integratedTerminal",
             "internalConsoleOptions": "neverOpen",
@@ -17,7 +18,11 @@
             ],
             "type": "pwa-node"
         }
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> 73590f5029d8bce52766d10e41fe2d1cdd6767c8
     ]
 }
 
