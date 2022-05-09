@@ -29,10 +29,10 @@ var userModel = require('../models/UserModel.js');
 
 module.exports.createNewUser = async function (req, res, next){
     try {
-        console.log("wefdwsa")
+            console.log("wefdwsa")
             const user = req.body;
             const { firstName, lastName, id,email, password, phoneNumber, birthDate , medicines} = user;
-            const newUser = new UserModel({
+            const newUser = new userModel({
                 firstName : firstName,
                 lastName : lastName,
 			    id : id,
