@@ -12,6 +12,8 @@ app.use('/user', user);
 
 
 //db.connect();
+
+db.connect();
 app.listen(port, () => {
   console.log(`final project🌠🌠🌠🌠${port}`);
 });
