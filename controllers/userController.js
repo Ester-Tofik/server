@@ -13,7 +13,6 @@ const { ObjectId } = require('mongodb');
         }
     };
 
-
 module.exports.createNewUser = async function (req, res, next){
     try {
             console.log("wefdwsa")
