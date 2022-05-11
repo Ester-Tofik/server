@@ -8,7 +8,7 @@ app.use(cors(3001));
 //const logger = require('./logs/');
 app.use('/user', user);
 
-db.connect();
+// db.connect();
 app.listen(port, () => {
   console.log(`final project🌠🌠🌠🌠${port}`);
 });
