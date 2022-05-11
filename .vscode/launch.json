@@ -11,9 +11,15 @@
             "skipFiles": [
                 "<node_internals>/**"
             ],
+<<<<<<< HEAD
             "program": "${workspaceFolder}\\app.js"
         }
 
+=======
+            "type": "pwa-node"
+
+        },        
+>>>>>>> d086e4c9b41ef08ecdc980a535dd79802c5e0e26
     ]
 }
 

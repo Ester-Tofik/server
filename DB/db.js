@@ -11,4 +11,4 @@ class mongooseDB {
     }
 
 }
-module.exports =new mongooseDB();
+module.exports = new mongooseDB();

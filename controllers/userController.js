@@ -1,5 +1,5 @@
 var userModel = require('../models/UserModel.js');
-
+const { ObjectId } = require('mongodb');
 
     module.exports.show= async function (req, res,next) {
      try{
@@ -12,27 +12,13 @@ var userModel = require('../models/UserModel.js');
             next(error);
         }
     };
- 
-//        list: function (req, res) {
-//         UserModel.find(function (err, Users) {
-//             if (err) {
-//                 return res.status(500).json({
-//                     message: 'Error when getting User.',
-//                     error: err
-//                 });
-//             }
-
-//             return res.json(Users);
-//         });
-//     },
-
 
 module.exports.createNewUser = async function (req, res, next){
     try {
-        console.log("wefdwsa")
+            console.log("wefdwsa")
             const user = req.body;
             const { firstName, lastName, id,email, password, phoneNumber, birthDate , medicines} = user;
-            const newUser = new UserModel({
+            const newUser = new userModel({
                 firstName : firstName,
                 lastName : lastName,
 			    id : id,
@@ -49,63 +35,18 @@ module.exports.createNewUser = async function (req, res, next){
             next(err);
         }
 }
-//     /**
-//      * UserController.update()
-//      */
-//     update: function (req, res) {
-//         var id = req.params.id;
 
-//         UserModel.findOne({_id: id}, function (err, User) {
-//             if (err) {
-//                 return res.status(500).json({
-//                     message: 'Error when getting User',
-//                     error: err
-//                 });
-//             }
-
-//             if (!User) {
-//                 return res.status(404).json({
-//                     message: 'No such User'
-//                 });
-//             }
-
-//             User.firstName = req.body.firstName ? req.body.firstName : User.firstName;
-// 			User.lastName = req.body.lastName ? req.body.lastName : User.lastName;
-// 			User.id = req.body.id ? req.body.id : User.id;
-// 			User.email = req.body.email ? req.body.email : User.email;
-// 			User.password = req.body.password ? req.body.password : User.password;
-// 			User.phoneNumber = req.body.phoneNumber ? req.body.phoneNumber : User.phoneNumber;
-// 			User.birthDate = req.body.birthDate ? req.body.birthDate : User.birthDate;
-// 			User.medicines = req.body.medicines ? req.body.medicines : User.medicines;
-			
-//             User.save(function (err, User) {
-//                 if (err) {
-//                     return res.status(500).json({
-//                         message: 'Error when updating User.',
-//                         error: err
-//                     });
-//                 }
-
-//                 return res.json(User);
-//             });
-//         });
-//     },
-
-//     /**
-//      * UserController.remove()
-//      */
-//     remove: function (req, res) {
-//         var id = req.params.id;
-
-//         UserModel.findByIdAndRemove(id, function (err, User) {
-//             if (err) {
-//                 return res.status(500).json({
-//                     message: 'Error when deleting the User.',
-//                     error: err
-//                 });
-//             }
-
-//             return res.status(204).json();
-//         });
-//     }
-// };
+module.exports.putUser = async function (req, res, next) {
+    try {
+        const idForUpdate = req.params.id;
+        const user = req.body;
+        const { firstName, lastName, email, password, id,identityNumber,birthDate , phoneNumber } = user;
+        const userToUpdate = { $set: { "firstName": firstName, "lastName": lastName, "email": email, "password": password, "id": id, "identityNumber":identityNumber,"birthDate":birthDate, "phoneNumber":phoneNumber } };
+        const update = { _id: ObjectId(idForUpdate) };
+        const userTo = await userModel.updateOne(update, userToUpdate);
+        res.send(userTo);
+    }
+    catch (error) {
+        next(error);
+    }
+};

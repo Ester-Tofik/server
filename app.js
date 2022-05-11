@@ -5,6 +5,8 @@ const app = express();
 const port = 3000;
 var cors = require('cors')
 app.use(cors(3001));
+app.use(express.json());
+
 //const logger = require('./logs/');
 app.use('/user', user);
 
