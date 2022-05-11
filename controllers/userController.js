@@ -49,4 +49,5 @@ module.exports.putUser = async function (req, res, next) {
     catch (error) {
         next(error);
     }
+    
 };
