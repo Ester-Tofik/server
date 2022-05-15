@@ -1,4 +1,5 @@
 var userModel = require('../models/UserModel.js');
+
 const { ObjectId } = require('mongodb');
 
     module.exports.show= async function (req, res,next) {

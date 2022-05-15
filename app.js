@@ -11,7 +11,7 @@ app.use(express.json());
 //const logger = require('./logs/');
 app.use('/user', user);
 app.use('/reminder', reminderController)
-// db.connect();
+db.connect();
 app.listen(port, () => {
   console.log(`final project🌠🌠🌠🌠${port}`);
 });
