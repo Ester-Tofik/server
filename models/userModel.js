@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const reminderManagement = new mongoose.Schema({
+const reminderManagementSchema = new mongoose.Schema({
 	userWantReminders: {
 		type: Boolean,
 		default: false
@@ -23,6 +23,7 @@ const reminderManagement = new mongoose.Schema({
 		enum: [0, 2, 5, 10, 15]
 	}
 })
+
 const medicineSchema = new mongoose.Schema({
 	apiId: {
 		type: String,
@@ -52,7 +53,7 @@ const medicineSchema = new mongoose.Schema({
 		type: Boolean,
 		default: false
 	}
-})
+});
 
 const userSchema = new Schema({
 	firstName: {
@@ -96,7 +97,8 @@ const userSchema = new Schema({
 	},
 	medicines: [medicineSchema],
 	reminderManagement: {
-		type: reminderManagement
+		type: reminderManagementSchema
 	}
 });
 module.exports = mongoose.model('user', userSchema);
+module.exports = mongoose.model('reminderManagement', reminderManagementSchema);
