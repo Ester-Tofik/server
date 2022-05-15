@@ -13,18 +13,6 @@ var userModel = require('../models/UserModel.js');
         }
     };
  
-//        list: function (req, res) {
-//         UserModel.find(function (err, Users) {
-//             if (err) {
-//                 return res.status(500).json({
-//                     message: 'Error when getting User.',
-//                     error: err
-//                 });
-//             }
-
-//             return res.json(Users);
-//         });
-//     },
 
 
 module.exports.createNewUser = async function (req, res, next){
