@@ -44,7 +44,7 @@ module.exports.putUser = async function (req, res, next) {
         const userToUpdate = { $set: { "firstName": firstName, "lastName": lastName, "email": email, "password": password, "id": id, "birthDate": birthDate, "phoneNumber": phoneNumber } };
         const update = { _id: ObjectId(idForUpdate) };
         const userTo = await userModel.updateOne(update, userToUpdate);
-        res.send(userToUpdate, idForUpdate);
+        res.send(userToUpdate);
     }
     catch (error) {
         next(error);
