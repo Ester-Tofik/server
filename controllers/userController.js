@@ -13,12 +13,9 @@ const { ObjectId } = require('mongodb');
             next(error);
         }
     };
- 
-
 
 module.exports.createNewUser = async function (req, res, next){
     try {
-            console.log("wefdwsa")
             const user = req.body;
             const { firstName, lastName, id,email, password, phoneNumber, birthDate , medicines} = user;
             const newUser = new userModel({
