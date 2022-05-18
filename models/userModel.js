@@ -99,5 +99,5 @@ const userSchema = new mongoose.Schema({
 	reminderManagement: {
 		type: reminderManagementSchema
 	}
-});
+}, { timestamps: true });
 module.exports = mongoose.model('user', userSchema);
