@@ -41,7 +41,7 @@ module.exports.putUser = async function (req, res, next) {
         const idForUpdate = req.params.id;
         const user = req.body;
         const { firstName, lastName, email, password, id, birthDate, phoneNumber } = user;
-        const userToUpdate = { $set: { "firstName": firstName, "lastName": lastName, "email": email, "password": password, "id": id, "birthDate": birthDate, "phoneNumber": phoneNumber } };
+        const userToUpdate = { "firstName": firstName, "lastName": lastName, "email": email, "password": password, "id": id, "birthDate": birthDate, "phoneNumber": phoneNumber, "_id": idForUpdate };
         const update = { _id: ObjectId(idForUpdate) };
         const userTo = await userModel.updateOne(update, userToUpdate);
         res.send(userToUpdate);
