@@ -13,10 +13,10 @@ module.exports.createNewReminder = async function (req, res, next) {
             sound: sound,
             PreTaskReminder: PreTaskReminder
         }
-        const reminderToUpdate = { $set: { "reminderManagement": newReminder }};
+        const reminderToUpdate = {  "reminderManagement": newReminder };
         const update = { _id: ObjectId(idForUpdate) };
         const userWithReminder = await userModel.updateOne(update, reminderToUpdate);
-        res.send(update);
+        res.send(reminderToUpdate);
         
     }
         catch (err) {
