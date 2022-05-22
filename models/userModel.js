@@ -17,6 +17,9 @@ const medicineSchema = new mongoose.Schema({
 		type: Number,
 		min: 1
 	},
+	times: {
+		type : Array
+	},
 	numberOf: {
 		type: Number,
 		min: 10,
