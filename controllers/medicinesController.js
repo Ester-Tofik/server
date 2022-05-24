@@ -5,15 +5,16 @@ module.exports.putOneMedicine = async function (req, res, next) {
     try {
         const medicine = req.body;
         const idForUpdate = req.params.id;
-        const { apiId, name, ammount, numberForDay, times, numberOf, startTakingDate, SendAReminder } = medicine;
+        const { apiId, name, daysInWeek, numberForDay, times, ammountOfPills, SendAReminderForPacket, pillsInPacket, SendAReminder } = medicine;
         const newMedicine = {
             apiId : apiId,
             name : name,
-            ammount: ammount,
+            daysInWeek: daysInWeek,
             numberForDay: numberForDay,
             times : times,
-            numberOf  : numberOf,
-            startTakingDate: startTakingDate,
+            ammountOfPills  : ammountOfPills,
+            SendAReminderForPacket: SendAReminderForPacket,
+            pillsInPacket : pillsInPacket,
             SendAReminder : SendAReminder
         }
         console.log(newMedicine);
