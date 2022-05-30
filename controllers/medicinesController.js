@@ -7,18 +7,18 @@ module.exports.putOneMedicine = async function (req, res, next) {
         const idForUpdate = req.params.id;
         const { apiId, name, daysInWeek, numberForDay, times, ammountOfPills, SendAReminderForPacket, pillsInPacket, SendAReminder } = medicine;
         const newMedicine = {
-            apiId : apiId,
-            name : name,
+            apiId: apiId,
+            name: name,
             daysInWeek: daysInWeek,
             numberForDay: numberForDay,
-            times : times,
-            ammountOfPills  : ammountOfPills,
+            times: times,
+            ammountOfPills: ammountOfPills,
             SendAReminderForPacket: SendAReminderForPacket,
-            pillsInPacket : pillsInPacket,
-            SendAReminder : SendAReminder
+            pillsInPacket: pillsInPacket,
+            SendAReminder: SendAReminder
         }
         console.log(newMedicine);
-        const user = await userModel.findOne({ _id: idForUpdate});
+        const user = await userModel.findOne({ _id: idForUpdate });
         const medicines = user.medicines;
         medicines.push(newMedicine);
         const update = { _id: ObjectId(idForUpdate) };
@@ -34,11 +34,25 @@ module.exports.putOneMedicine = async function (req, res, next) {
 module.exports.getAllMedicince = async function (req, res, next) {
     try {
         const id = req.params.id;
-        const user = await userModel.findOne({ _id: id});
+        const user = await userModel.findOne({ _id: id });
         const medicines = user.medicines;
         res.send(medicines);
-    } 
+    }
     catch (error) {
+        next(err);
+    }
+}
+
+module.exports.deleteOneMedicineInMedicineList = async function (req, res, next) {
+    try {
+        const userId = req.params.id;
+        const medicineId = req.body.currentMedicine._id;
+        const user = await userModel.findOne({ _id: userId });
+        const medicines = user.medicines;
+        medicineIndex = medicines.find((oneMedicine) => oneMedicine._id == medicineId);
+        user.medicines.remove(req.body.currentMedicine);
+    }
+    catch (error){
         next(err);
     }
 }
