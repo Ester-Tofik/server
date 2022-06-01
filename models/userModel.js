@@ -10,28 +10,27 @@ const medicineSchema = new mongoose.Schema({
 	name: {
 		type: String
 	},
-	ammount: {
-		type: Number
+	daysInWeek : {
+		type: Array
 	},
-	numberForDay: {
+	numberForDay : {
 		type: Number,
 		min: 1
 	},
 	times: {
 		type : Array
+	}, 
+	ammountOfPills: {
+		type: Number
 	},
-	numberOf: {
-		type: Number,
-		min: 10,
-		max: 60
+	SendAReminderForPacket: {
+		type : Boolean
+	}, 
+	pillsInPacket : {
+		type: Number
 	},
-	startTakingDate: {
-		type: Date,
-		default: new Date()
-	},
-	SendAReminder: {
-		type: Boolean,
-		default: false
+	SendAReminder : {
+		type: Boolean
 	}
 });
 
