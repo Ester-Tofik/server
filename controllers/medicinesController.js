@@ -16,7 +16,6 @@ module.exports.putOneMedicine = async function (req, res, next) {
             startTakingDate: startTakingDate,
             SendAReminder : SendAReminder
         }
-        console.log(newMedicine);
         const user = await userModel.findOne({ _id: idForUpdate});
         const medicines = user.medicines;
         medicines.push(newMedicine);
