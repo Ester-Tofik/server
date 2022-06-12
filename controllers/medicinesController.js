@@ -42,19 +42,37 @@ module.exports.getAllMedicince = async function (req, res, next) {
     }
 }
 
+module.exports.updataOneMedicineInMedicineList = async function (req, res, next) {
+    try {
+        const userId = req.params.id;
+        const medicineId = req.body._idm;
+        const user = await userModel.findOne({ _id: userId });
+        const medicines = user.medicines;
+        medicineIndex = medicines.find((oneMedicine) => oneMedicine.id == ObjectId(medicineId));
+        //user.medicines.update(medicineId,req.body );
+        user.medicines[9]=(req.body);
+        const update = { _id: ObjectId(userId) };
+        const userWithMedicine = await userModel.updateOne(update, user);
+        res.send(userWithMedicine);
+    }
+    catch (err){
+        next(err);
+    }
+}
+
 module.exports.deleteOneMedicineInMedicineList = async function (req, res, next) {
     try {
         const userId = req.params.userId;
         const medicineId = req.body._id;
         const user = await userModel.findOne({ _id: userId });
         const medicines = user.medicines;
-        medicineIndex = medicines.find((oneMedicine) => oneMedicine._id == medicineId);
+        medicineIndex = medicines.find((oneMedicine) => {oneMedicine._id == medicineId});
         user.medicines.remove(req.body);
         const update = { _id: ObjectId(userId) };
         const userWithMedicine = await userModel.updateOne(update, user);
         res.send(userWithMedicine);
     }
     catch (error){
-        next(err);
+        next(error);
     }
 }
