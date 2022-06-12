@@ -63,16 +63,16 @@ module.exports.updataOneMedicineInMedicineList = async function (req, res, next)
 module.exports.deleteOneMedicineInMedicineList = async function (req, res, next) {
     try {
         const userId = req.params.userId;
-        const medicineId = req.body._id;
+        const medicineId = req.params.medicineId;
         const user = await userModel.findOne({ _id: userId });
         const medicines = user.medicines;
-        medicineIndex = medicines.find((oneMedicine) => {oneMedicine._id == medicineId});
-        user.medicines.remove(req.body);
+        medicineIndex = medicines.find((oneMedicine) => oneMedicine._id == medicineId);
+        user.medicines.remove(medicineId);
         const update = { _id: ObjectId(userId) };
         const userWithMedicine = await userModel.updateOne(update, user);
-        res.send(userWithMedicine);
+        res.send(update);
     }
     catch (error){
-        next(error);
+        next(err);
     }
 }
