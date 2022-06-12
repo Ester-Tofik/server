@@ -71,6 +71,9 @@ module.exports.deleteOneMedicineInMedicineList = async function (req, res, next)
         const update = { _id: ObjectId(userId) };
         const userWithMedicine = await userModel.updateOne(update, user);
         res.send(update);
+
+
+        
     }
     catch (error){
         next(err);
