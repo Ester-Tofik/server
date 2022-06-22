@@ -4,6 +4,8 @@ class mongooseDB {
 
     constructor() { }
 
+
+    
     async connect() {
         const connectionString = "mongodb://localhost:27017/MatnatChaim";
         await mongoose.connect(connectionString);

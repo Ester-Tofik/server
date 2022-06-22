@@ -17,7 +17,7 @@ module.exports.putOneMedicine = async function (req, res, next) {
             pillsInPacket: pillsInPacket,
             SendAReminder: SendAReminder
         }
-        const user = await userModel.findOne({ _id: idForUpdate});
+        const user = await userModel.findOne({ _id: idForUpdate });
         const medicines = user.medicines;
         medicines.push(newMedicine);
         const update = { _id: ObjectId(idForUpdate) };
@@ -48,14 +48,19 @@ module.exports.updataOneMedicineInMedicineList = async function (req, res, next)
         const medicineId = req.body._idm;
         const user = await userModel.findOne({ _id: userId });
         const medicines = user.medicines;
-        medicineIndex = medicines.find((oneMedicine) => oneMedicine.id == ObjectId(medicineId));
+        let indexOut;
+        medicineIndex = medicines.find((oneMedicine, index) => {
+            if (oneMedicine.id == ObjectId(medicineId)) {
+                indexOut = index;
+            }
+        });
         //user.medicines.update(medicineId,req.body );
-        user.medicines[9]=(req.body);
+        user.medicines[indexOut] = req.body;
         const update = { _id: ObjectId(userId) };
         const userWithMedicine = await userModel.updateOne(update, user);
         res.send(userWithMedicine);
     }
-    catch (err){
+    catch (err) {
         next(err);
     }
 }
@@ -71,8 +76,13 @@ module.exports.deleteOneMedicineInMedicineList = async function (req, res, next)
         const update = { _id: ObjectId(userId) };
         const userWithMedicine = await userModel.updateOne(update, user);
         res.send(update);
+
+
+
     }
-    catch (error){
+    catch (error) {
         next(err);
     }
 }
+
+
